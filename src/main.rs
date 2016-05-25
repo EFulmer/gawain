@@ -6,6 +6,16 @@ enum Val {
     Float(f64),
 }
 
+fn tokenize(s: &str) -> String {
+    s.replace('(', " ( ")
+     .replace(')', " ) ")
+     .split_whitespace()
+     .collect()
+}
+
+// TODO 
+fn parse() { }
+
 fn atom(s: &str) -> Val {
     if let Ok(i) = s.parse::<i32>() {
         return Val::Int(i);
