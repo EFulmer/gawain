@@ -1,0 +1,6 @@
+[package]
+name = "gawain"
+version = "0.1.0"
+authors = ["Eric Fulmer <eric.r.fulmer@gmail.com>"]
+
+[dependencies]
