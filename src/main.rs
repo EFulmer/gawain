@@ -14,7 +14,32 @@ fn tokenize(s: &str) -> String {
 }
 
 // TODO 
-fn parse() { }
+fn parse(program: &str) -> Val { 
+    Val::Int(0)
+    // read_from_tokens(tokenize(program))
+}
+
+fn read_from_tokens(tokens: &mut Vec<String>) -> Val {
+    if tokens.len() == 0 {
+        panic!("Unexpected EOF while reading token stream.");
+    }
+
+    let token = tokens.remove(0);
+
+    if token == "(" {
+        let mut l = Vec::new();
+
+        while tokens[0] != ")" {
+            l.push(read_from_tokens(tokens));
+        }
+        tokens.remove(0); // Get rid of ")"
+        return Val::List(l);
+    } else if ")" == token {
+        panic!("Unexpected rparen while reading token stream.");
+    } else {
+        return atom(&token);
+    }
+}
 
 fn atom(s: &str) -> Val {
     if let Ok(i) = s.parse::<i32>() {
